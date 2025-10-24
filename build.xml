@@ -22,17 +22,19 @@
         </checkstyle>
     </target>
     <target name="junit" depends="compile">
+        <mkdir dir="build/test-results"/>
         <junit printsummary="yes" haltonfailure="yes">
-              <classpath>
+            <classpath>
                 <pathelement location="build/classes"/>
                 <pathelement path="WebContent/WEB-INF/lib/junit.jar"/>
                 <pathelement path="WebContent/WEB-INF/lib/org.hamcrest.core_1.3.0.v201303031735.jar"/>
-              </classpath>
-              <test name="junit.TestCalculator" haltonfailure="no" outfile="TestCalculator_JUnitResult">
+            </classpath>
+            <test name="junit.TestCalculator" haltonfailure="no" todir="build/test-results" outfile="TEST-TestCalculator">
                 <formatter type="xml"/>
-              </test>
+            </test>
         </junit>
     </target>
+
 	<target name="war" depends="compile">
         <war destfile="dest/SampleWebApp.war" webxml="WebContent/WEB-INF/web.xml">
             <fileset dir="WebContent"/>
